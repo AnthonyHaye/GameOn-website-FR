@@ -11,27 +11,57 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+const submitBtn = document.querySelectorAll(".btn-submit");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+submitBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // launch modal form
 function launchModal() {
-  modalbg.style.display = "block";
+  // Vérifie si le bouton cliqué a la classe "btn-submit"
+  if (this.classList.contains('btn-submit')) {
+    // Si c'est le cas, affiche la div avec la classe "bground1"
+    const modalbg1 = document.querySelector(".bground1");
+    modalbg1.style.display = "block";
+    modalbg.style.display = "none";
+  } else {
+    // Sinon, affiche la div avec la classe "bground"
+    modalbg.style.display = "block";
+  }
 }
 
+
+//Bouton fermeture du formulaire
+
+var Btnferme = document.getElementById("Btnferme");
+var modal = document.querySelector(".bground");
+Btnferme.addEventListener("click", function(){
+  modal.style.display = "none";
+});
+
+// les écouteurs d'événements pour revenir à la page d'accueil
+// Écouteur d'événement pour le bouton de fermeture de la div bground1
+var closeBtn = document.querySelector(".bground1 .close");
+closeBtn.addEventListener("click", retourPageAccueil);
+// Écouteur d'événement pour le bouton btn-submit avec la valeur "Fermer"
+var fermerBtn = document.querySelector(".bground1 .btn-submit[value='Fermer']");
+fermerBtn.addEventListener("click", retourPageAccueil);
+// Fonction pour revenir à la page d'accueil
+function retourPageAccueil() {
+  // Rediriger vers la page d'accueil
+  window.location.href = "index.html"; 
+}
+
+
 //Données du formulaire d'inscription
-
-
 // Fonction de formatage de la date
 // Définition de la fonction formatDate qui prend une date au format ISO en paramètre
 function formatDate(date) {
   // Création d'une instance de Date à partir de la chaîne de caractères de la date
   const dateObj = new Date(date);
-
   // Extraction du jour du mois (au format numérique) et ajout de zéro(s) à gauche si nécessaire pour atteindre une longueur de deux caractères
   const day = String(dateObj.getDate()).padStart(2, '0');
-
   // Extraction du mois (au format numérique) et ajout de zéro(s) à gauche si nécessaire pour atteindre une longueur de deux caractères
   const month = String(dateObj.getMonth() + 1).padStart(2, '0');
   // Note : getMonth() retourne les mois de 0 à 11, donc on ajoute 1 pour obtenir le mois actuel
@@ -41,6 +71,13 @@ function formatDate(date) {
 
   // Retourne la date formatée en concaténant le jour, le mois et l'année, séparés par des slashs
   return `${day}/${month}/${year}`;
+}
+
+// Fonction de vérification des champs
+function verifierChamp(champ) {
+  if (champ.value.trim() === "") {
+    throw new Error("Le champ est vide.");
+  }
 }
 
 
@@ -107,29 +144,5 @@ let form = document.querySelector("form")
     
 });
 
-// Fonction de vérification des champs
-function verifierChamp(champ) {
-  if (champ.value.trim() === "") {
-    throw new Error("Le champ est vide.");
-  }
-}
-
-function formatDate(date) {
-  // Créer une instance de la date à partir de la chaîne de caractères
-  const dateObj = new Date(date);
-
-  // Extraire le jour, le mois et l'année de la date
-  const day = String(dateObj.getDate()).padStart(2, '0');
-  const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // Les mois sont indexés à partir de 0, donc on ajoute 1
-  const year = dateObj.getFullYear();
-
-  // Retourner la date formatée
-  return `${day}/${month}/${year}`;
-}
-
-// Exemple d'utilisation
-const dateISO = "2024-05-06"; // Date au format ISO
-const formattedDate = formatDate(dateISO);
-console.log(formattedDate); // Affiche : "06/05/2024"
 
 
