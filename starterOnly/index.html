@@ -10,6 +10,9 @@
       href="https://fonts.googleapis.com/css?family=DM+Sans"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/x-icon" href="./Logo.ico">
+
+    <script src="modal.js" defer></script>
   </head>
   <body>
     <div class="topnav" id="myTopnav">
@@ -18,12 +21,12 @@
     </div>
     <div class="main-navbar">
       
-      <!--a href="#" class="active"><span>Accueil</span></a-->
+      <a href="#" class="active"><span>Accueil</span></a>
       <a href="#"><span>Détails de l'évènement</span></a>
       <a href="#"><span>À propos</span></a>
       <a href="#"><span>Contact</span></a>
       <a href="#"><span>Évènements passés</span></a>
-      <a href="javascript:void(0);" class="icon" onclick="editNav()">
+      <a href="./modal.js" class="icon" onclick="editNav()"> 
         <i class="fa fa-bars"></i>
       </a>
     </div>
@@ -60,16 +63,17 @@
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
+              vvvonsubmit="return validate();"
             >
               <div
-                class="formData">
+                class="formData" data-error = "blannznz" data-error-visible="true" >
                 <label>Prénom</label><br>
                 <input
                   class="text-control"
                   type="text"
                   id="first"
                   name="first"
+                  placeholder="Votre prénom"
                   minlength="2"
                   maxlength="20"
                   required
@@ -83,9 +87,10 @@
                   type="text"
                   id="last"
                   name="last"
+                  placeholder="Votre nom"
                   minlength="2"
                   maxlength="20"
-                  required
+                  
                 /><br>
               </div>
               <div
@@ -96,7 +101,8 @@
                   type="email"
                   id="email"
                   name="email"
-                  required
+                  placeholder="Votre adresse email"
+                  
                 /><br>
               </div>
               <div
@@ -107,6 +113,7 @@
                   type="date"
                   id="birthdate"
                   name="birthdate"
+                  placeholder="Votre date d'anniversaire"
                 /><br>
               </div>
               <div
@@ -116,7 +123,8 @@
                   type="number" 
                   class="text-control" 
                   id="quantity" 
-                  name="quantity" 
+                  name="quantity"
+                  placeholder="Nombre de tournois" 
                   min="0" 
                   max="99">
               </div>
@@ -233,9 +241,9 @@
         <div class="content1">
           <span class="close" id = "Btnferme"></span>
           <div class="modal-body"> 
-              <p class="merci"> Merci pour votre inscription </p>
+              <p class="merci"> Merci ! Votre réservation a été reçue.</p>
               <input
-                class="btn-submit"
+                class="btn-submit marge"
                 type="submit"
                 class="button"
                 value="Fermer"
@@ -250,6 +258,6 @@
         Copyright 2014 - 2022, GameOn Inc.
       </p>
     </footer>
-    <script src="modal.js"></script>
+    
   </body>
 </html>

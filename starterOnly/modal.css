@@ -8,7 +8,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
 }
 /* Landing Page */
 
@@ -16,7 +16,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
+  /* background-image: url("background.png"); */
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -169,6 +169,8 @@ main {
   width: 100%;
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -182,6 +184,7 @@ main {
   width: 100%;
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
+  
 }
 
 .content1 {
@@ -192,12 +195,13 @@ main {
   max-width: 500px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
-  background: #c31616;
+  background: #232323;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
   color: #fff;
   padding-top: 10px;
+  text-align: center; 
 }
 
 .content {
@@ -217,6 +221,16 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.merci{
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin-left: 3rem;
+  margin-top: 13rem;
 }
 
 label {
@@ -242,7 +256,7 @@ input {
 .formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.4em;
-  color: #e54858;
+  color: #8f48e5;
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
@@ -255,14 +269,14 @@ input {
   opacity: 1;
 }
 .formData[data-error-visible="true"] .text-control {
-  border: 2px solid #e54858;
+  border: 10px solid #e54858;
 }
-/* 
-input[data-error]::after {
+ 
+/* input[data-error]::after {
     content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
-} */
+    font-size: 01em;
+    color: rgb(0, 255, 60);
+}  */
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -364,6 +378,10 @@ input[data-error]::after {
   color: #fff;
   cursor: pointer;
   border: 0;
+}
+
+.marge{
+  margin-top: 23rem;
 }
 /* custom select styles */
 .custom-select {
