@@ -105,15 +105,13 @@
 // /************************************************************************************************************************************************************** */
 
 //Navigation  querySelector(".la class")
-
 const bground = document.querySelector(".bground")
 const bground1 = document.querySelector(".bground1")
 const btnSignup = document.querySelectorAll(".btn-signup")
 const btnClose = document.querySelector(".btn-close")
-const btnNav = document.querySelector('#btnNavbar');
+const btnNavbar = document.querySelector('#btnNavbar');
 
 //Formulaire  querySelector("# identifiant")
-
 const form = document.querySelector('form');
 const prenom = document.querySelector('#first');
 const nom = document.querySelector('#last');
@@ -124,36 +122,21 @@ const RadioVille = document.querySelectorAll("input[name='location']");
 const conditionsCheckbox = document.querySelector('#checkbox1');
 const nextEvenement = document.querySelectorAll('#checkbox2');
 
-// Gestion de la navBar
-btnNav.addEventListener('click', () => document.querySelector('.list').classList.toggle('menu_toggle'));
-
-
-//Gestion popup d'inscription
-btnSignup.forEach(btn => { 
-  btn.addEventListener('click', () => 
-    bground.style.display = "flex") }
-);
-btnClose.addEventListener('click',() => 
-    bground.style.display = "none");
-
+// Regex Règles de validation
+const regexNom = /^([A-Za-zÀ-ÿ|\s]{2,15})?([-]{0,1})?([A-Za-zÀ-ÿ|\s]{2,15})$/;
+const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+const regexQuantite = /^([0-9]{1,2})$/;
 
 //Les messages d'erreurs
-
 const message = {
   MessPrenom: 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.',
   MessNom: 'Veuillez entrer 2 caractères ou plus pour le champ du nom.',
   MessEmail: 'Veuillez renseigner une adresse mail valide.',
-  MessBirthday: 'Vous devez entrer votre date de naissance.',
+  MessBirthday: 'Vous devez entrer votre date de naissance et être majeur.',
   MessQuantite: 'Veuillez renseigner un nombre entre 0 et 99',
   MessRadioVille: 'Veuillez sélectionner une ville',
   MessConditions: `Vous devez accepter les conditions d'utilisation`,
 };
-
-// Regex Règles de validation
-
-const regexNom = /^([A-Za-z|\s]{2,15})?([-]{0,1})?([A-Za-z|\s]{2,15})$/;
-const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-const regexQuantite = /^([0-9]{1,2})$/;
 
 // customize les erreurs
 // affiche le message d'erreur
@@ -167,6 +150,18 @@ const hideErrorMessage = element => {
   element.parentElement.setAttribute('data-error-visible', '');
   element.parentElement.setAttribute('data-error', '');
 }
+
+
+// Gestion de la navBar
+btnNavbar.addEventListener('click', () => document.querySelector('.liste').classList.toggle('gsm'));
+
+//Gestion popup d'inscription
+btnSignup.forEach(btn => { btn.addEventListener('click', () => bground.style.display = "flex")});
+btnClose.addEventListener('click',() => bground.style.display = "none");
+
+
+
+
 
 
 // *******************************les fonctions*********************
@@ -232,31 +227,9 @@ RadioVille.forEach(radio => radio.addEventListener('change', () => checkIfCitySe
 conditionsCheckbox.addEventListener('input', () => checkIfConditionsAccepted(conditionsCheckbox, message.MessConditions));
 
 
-// // Validation du formulaire
-// function validate(e) {
-//   e.preventDefault();
-
-//   // Vérifie si le formulaire est correctement rempli avec les fonctions
-//   const ConditionsOk = checkIfConditionsAccepted(conditionsCheckbox, message.MessConditions);
-//   const VilleOk = checkIfCitySelected(RadioVille, message.MessRadioVille);
-//   const AgeOk = checkIfUserIsYoungerThan18(birthday, message.MessBirthday);
-//   const QuantiteOk = checkInputValue(regexQuantite, quantite, message.MessQuantite);
-//   const EmailOk = checkInputValue(regexEmail, email, message.MessEmail);
-//   const NomOk = checkInputValue(regexNom, nom , message.MessNom);
-//   const PrenomOk = checkInputValue(regexNom, prenom , message.MessPrenom);
-
-//   // Le formulaire est correctement rempli
-//   if (PrenomOk && NomOk && EmailOk && QuantiteOk && AgeOk && VilleOk && ConditionsOk) {
-//       bground.style.display = 'none';
-//       bground1.style.display = 'flex';
-//       form.reset();
-//   } 
-// };
-
-
 // Validation du formulaire
-function validate(e) {
-  e.preventDefault();
+function validate(evenement) {
+  evenement.preventDefault();
 
   try {
     // Vérifie si le formulaire est correctement rempli avec les fonctions
