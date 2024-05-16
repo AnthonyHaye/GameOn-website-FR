@@ -249,7 +249,7 @@ function validate(evenement) {
     } 
   } catch(error) {
     // Gère l'erreur
-    console.error('Une erreur s\'est produite lors de la validation du formulaire :', error);
+    console.error('Une erreur c\'est produite lors de la validation du formulaire :', error);
     // Vous pouvez ajouter ici du code pour afficher un message à l'utilisateur ou effectuer d'autres actions en cas d'erreur.
   }
 };
